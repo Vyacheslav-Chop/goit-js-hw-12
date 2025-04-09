@@ -1,0 +1,8 @@
+.iziToast > .iziToast-close {
+  opacity: 0.8;
+  filter: brightness(0) invert(1);
+}
+
+.iziToast > .iziToast-body .iziToast-message {
+  text-align: center !important;
+}
