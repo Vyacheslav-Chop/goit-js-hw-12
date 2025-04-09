@@ -61,18 +61,15 @@ async function handleSearch(event) {
 }
 
 loadMoreBtn.addEventListener('click', loadMore);
-let isLoading = false;
 
 async function loadMore(event) {
-  if (isLoading) return;
-
-  isLoading = true;
-
+  
   const moreBtn = event.currentTarget;
   if (!moreBtn) return;
 
   page++;
   hideLoadMoreButton();
+  moreBtn.disabled = true;
   showLoader();
 
   try {
@@ -81,10 +78,10 @@ async function loadMore(event) {
     updateGallery(hits);
     setTimeout(() => smoothScroll(), 0);
     checkEndOfCollection(totalHits);
+    moreBtn.disabled = false;
   } catch (error) {
     showErrorMessage('Something went wrong. Please try again later!');
   } finally {
-    isLoading = false;
     hideLoader();
   }
 }
